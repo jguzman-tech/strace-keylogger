@@ -5,7 +5,7 @@
 function print_help() {
     printf "This is a demo of how to use strace as a "
     printf "\"poor man's keylogger\".\n"
-    printf "Usage: sudo ./strace_keylogger.awk <PID> [-h/--help] [-d/--debug]\n"
+    printf "Usage: sudo ./strace_keylogger.awk <PID>\n"
     exit 1
 }
 
@@ -46,14 +46,12 @@ function select_pts() {
 }
 
 BEGIN {
-    if(ARGC == 1 || ARGC == 2) {
+    # print "running as user " ENVIRON["USER"]
+    if(ENVIRON["USER"] == "root" && (ARGC == 1 || ARGC == 2)) {
         if(ARGC == 1) {
             pid = select_pts()
         }
         else {
-            if(ARGV[1] == "-h" || ARGV[1] == "--help") {
-                print_help()
-            }
             if(ARGV[1] !~ /[0-9]+/) {
                 print_help()
             }
