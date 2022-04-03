@@ -9,3 +9,5 @@ These system calls include the `read` system call which is necessary to read key
 This is a demo of how to use strace as a "poor man's keylogger".
 Usage: sudo ./strace_keylogger.awk <PID>
 ```
+
+![Example Usage (GIF)](./demo.gif)
